@@ -107,7 +107,13 @@ public class DNAProcessor {
     }
 
     private static String translateRNAtoProtein(String rna) {
-        String[] codons = rna.split("(?<=\\G...)"); // Split RNA into codons (groups of 3)
+        String[] codons = new String[rna.length()/3];
+        int a = 0;
+        for (int n = 0; n < rna.length(); n+=3){
+            codons[a] = String.valueOf(rna.indexOf(n) + rna.indexOf(n+1) + rna.indexOf(n+2));
+            a++;
+        }
+        // String[] codons = rna.split("(?<=\\G...)"); // Split RNA into codons (groups of 3)
 
         // Find the first start codon (AUG)
         int startCodonIndex = -1;
